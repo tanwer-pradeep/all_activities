@@ -1,0 +1,31 @@
+.body{
+    margin: 0%;
+}
+
+.input-container{
+    height: 15vh;
+    background-color: lightcoral;
+}
+
+.task-container{
+    /* list-style: none; */
+    height:  85vh;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    font-family: 'Original Surfer', cursive;
+}
+
+.task-list{
+    list-style: none;
+    font-size: 1.5rem;
+    background-color: blueviolet;
+    width: 60vh;
+    height: 1.5rem;
+}
+
+.input_box{
+    font-family: 'Original Surfer', cursive;
+    height: 60%;
+    font-size: 1.25rem;
+}
