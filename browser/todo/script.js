@@ -11,10 +11,12 @@ input.addEventListener("keydown", function(e){
         let task = input.value;
         // console.log(task);
         let li = document.createElement("li");
+        //create element uses any html tag
         li.innerText = task;
         li.addEventListener("dblclick", function(e){
             li.remove();
         })
+        //setting up attributes
         li.setAttribute("class", "task");
         ul.appendChild(li);
         input.value = "";

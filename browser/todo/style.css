@@ -4,11 +4,13 @@
 }
 
 .input-container{
+    display: block;
     height: 15vh;
     background-color: lightcoral;
 }
 
 .task-container{
+    display: block;
     /* list-style: none; */
     height:  85vh;
     background-color: greenyellow;
@@ -24,7 +26,7 @@
     font-size: 1.5rem;
     background-color: blueviolet;
     width: 60vh;
-    height: 3.5rem;
+    height: 2.5rem;
     padding: 1.5rem;
     margin: 0 auto;
     margin-bottom: 2vh;
