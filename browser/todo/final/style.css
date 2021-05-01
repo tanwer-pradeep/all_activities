@@ -1,4 +1,62 @@
+*{
+    margin: 0;
+}
+
 .toolbar{
+    display: flex;
     height: 15vh;
     background-color: black;
+    justify-content:space-between;
+}
+
+.filter-container{
+    display: flex;
+    height: 60%;
+    width: 40%;
+    border: 5px rgb(155, 12, 12);
+    background-color: rgb(68, 66, 66);
+    margin-top: auto auto;
+    justify-content: space-around;
+
+}
+
+
+.filter{
+    height: 60%;
+    width: 1.5rem;
+    /* background-color: green; */
+    border: 1px red;
+    margin-top: 1rem;
+}
+.pink{
+    background-color: pink;
+}
+.green{
+    background-color: green;
+}
+.blue{
+    background-color: blue;
+}
+.black{
+    background-color: black;
+}
+
+.action_container{
+    height: 35%;
+    width: 3.5rem;
+    /* border-radius: 1px white; */
+    background-color: rgb(68, 68, 64);
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.icon-container{
+    height: 80%;
+    width: 40%;
+    background-color: white;
+    margin: 0 auto;
+}
+.fas{
+    margin: 0 auto;
 }
