@@ -19,11 +19,6 @@ function isfile(path){
     return f.lstatSync(path).isFile();
 }
 
-// let input = process.argv.slice(2);
-
-// let directory = input[0];
-// treeview(directory, "")
-// flatview(directory);
 function treeview(path, indent){
 
     if(isfile(path) == true){

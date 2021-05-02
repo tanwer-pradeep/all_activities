@@ -1,6 +1,7 @@
 let input = process.argv.slice(2);
 let help = require("./commands/help")
 let view = require("./commands/view");
+let organize = require("./commands/organize");
 
 
 let cmd = input[0];
@@ -13,7 +14,7 @@ switch(cmd){
         view.view(input[1], input[2]);
         break;
     case "organize" :
-        console.log("organize");
+        organize.organize(input[1]);
         break;
     default :
         console.log("invalid inputs");
