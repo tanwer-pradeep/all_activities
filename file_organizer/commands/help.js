@@ -4,7 +4,8 @@ function help_fun(){
         Lists of all commands :-
             1. help - shows all the commands.
             2. view - view <directory> <tree/flat>
-            3. organize - organize <directory>
+            3. viewonly - viewonly <directory> <extension>
+            4. organize - organize <directory>
     `);
 }
 
