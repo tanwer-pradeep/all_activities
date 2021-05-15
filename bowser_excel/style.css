@@ -1,0 +1,84 @@
+*{
+    box-sizing: border-box;
+}
+.body{
+    
+    margin : 0px;
+    /* border: 1px solid red; */
+}
+
+.menu_container{
+    border: 1px solid red;
+    height: 5rem;
+}
+.fomula_container{
+    border: 1px solid red;
+    height: 2rem;
+}
+.grid_container{
+    height: calc(100vh - ( 5rem + 2rem + 2.5rem ) );
+    background-color: aquamarine;
+    /* border: 1px solid red; */
+    overflow: auto;
+}
+.sheet_container{
+    border: 1px solid;
+    height : 2.5 rem;
+    display: flex;
+}
+
+.icon_container{
+    width: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.sheet_list{
+    border: none;
+    width : 95%;
+    display: flex;
+}
+
+.sheet{
+    background-color: lightgreen;
+    border: 1px solid;
+}
+
+.icon{
+    font-size: 1.2rem;
+    border: none;
+}
+
+.active{
+    background-color:white;
+}
+
+
+.top_left_block{
+    background-color: lightgrey;
+}
+
+.block{
+    border: 1px solid;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+}
+
+
+
+.top_row{
+    display: flex;
+}
+.cell{
+    height: 2rem;
+    border: 1px solid;
+    min-width: 5rem;
+    text-align: center;
+}
+
+.row{
+    display: flex;
+}
