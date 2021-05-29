@@ -11,13 +11,26 @@ req(url, function(err, res, body){
 function ExtractHtml(body){
     let selectorTool = c.load(body);
     let batsman_table = selectorTool(".table.batsman");
+    let highestScorer = "";
+    let highestScore = 0;
     for(let i = 0; i < batsman_table.length; i++){
         let tables = selectorTool(batsman_table[i]).find("td");
         for(let j = 0; j < tables.length - 10; j++){
-
-            if(j % 9 == 0) console.log(selectorTool(tables[j]).text() + "\t" + selectorTool(tables[j+2]).text());
-           
+            // let name = "";
+            // let score = 0;
+            if(j % 9 == 0){ 
+                 let name = selectorTool(tables[j]).text();
+                 let score = selectorTool(tables[j+2]).text();
+                
+                console.log("BatsMan Name :-> "+ name + "\t" +"Runs Scored :-> "+ score);
+                if(selectorTool(tables[j+2]).text() >= highestScore) {
+                    highestScore = selectorTool(tables[j+2]).text();
+                    highestScorer = selectorTool(tables[j]).text();
+                }
+            }
         }
         console.log('---------------------------------------------------------------------------------------------')
     }
+
+    console.log("Highest Scorer :-> " + highestScorer + "\t Score :-> " + highestScore);
 }
