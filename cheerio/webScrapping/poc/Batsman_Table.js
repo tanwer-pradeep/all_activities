@@ -8,6 +8,8 @@ req(url, function(err, res, body){
     else ExtractHtml(body);
 })
 
+
+
 function ExtractHtml(body){
     let selectorTool = c.load(body);
     let batsman_table = selectorTool(".table.batsman");
@@ -23,9 +25,9 @@ function ExtractHtml(body){
                  let score = selectorTool(tables[j+2]).text();
                 
                 console.log("BatsMan Name :-> "+ name + "\t" +"Runs Scored :-> "+ score);
-                if(selectorTool(tables[j+2]).text() >= highestScore) {
-                    highestScore = selectorTool(tables[j+2]).text();
-                    highestScorer = selectorTool(tables[j]).text();
+                if(score >= highestScore) {
+                    highestScore = score;
+                    highestScorer = name;
                 }
             }
         }
