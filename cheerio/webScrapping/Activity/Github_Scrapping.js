@@ -69,8 +69,3 @@ function getdetails(url){
         // }
     }
 }
-
-
-
-
-//.flex-auto.min-width-0.p-2.pr-3.pr-md-2 .markdown-title
