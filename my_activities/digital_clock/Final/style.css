@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0b2008 ;
+}
+
+.date-time{
+    border: 3px solid #1E91C8 ;
+    border-radius: 10px;
+    background: #19dab0;
+    -webkit-box-reflect: below 2px linear-gradient(transparent, rgb(255, 255, 255,0.2));
+    transition:0.5s;
+    transition-property: background,box-shadow;
+}
+
+.date-time:hover{
+    background: #dfc42c;
+    box-shadow: 0,0,30px #11A1E6;
+
+}
+.date{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 3rem;
+    font-weight: 300;
+    padding-left: 10px;
+    padding-top: 5px;
+    color: aliceblue;
+    text-align: center;
+    letter-spacing: 2px;
+}
+.time{
+    font-size: 5rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: aliceblue;
+    padding: 10px 10px;
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    
+}
