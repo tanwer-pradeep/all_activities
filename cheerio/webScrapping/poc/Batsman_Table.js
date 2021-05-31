@@ -25,8 +25,8 @@ function ExtractHtml(body){
                  let score = selectorTool(tables[j+2]).text();
                 
                 console.log("BatsMan Name :-> "+ name + "\t" +"Runs Scored :-> "+ score);
-                if(score >= highestScore) {
-                    highestScore = score;
+                if(Number(score) >= highestScore) {
+                    highestScore = Number(score);
                     highestScorer = name;
                 }
             }
