@@ -2,6 +2,8 @@
 
 let req = require("request");
 let c = require("cheerio");
+let p = require("path");
+let fs = require("fs");
 
 
 let url = "https://github.com/topics";
@@ -35,19 +37,37 @@ function extractRepo(url){
 function getissues(html){
     let selectorTool = c.load(html);
     let topicname = selectorTool(".h1");
-    let issueList = selectorTool(".col-md-8.col-lg-9 .my-4");
+    let directory = "F:\\a2\\cheerio\\webScrapping\\Folders";
 
-    console.log(topicname.text());
+    let issueList = selectorTool(".col-md-8.col-lg-9 .my-4");
+    let topic = (topicname.text()).trim();
+    console.log(topic);
+    createDir(directory,topic);
     for(let i = 0; i < 8; i++){
         let issueLink = selectorTool(issueList[i]).find(".tabnav-tabs a")
         for(let j = 0; j < issueLink.length; j++)
         if(j % 3 == 1){
-            let ilink = 'https://github.com'+selectorTool(issueLink[1]).attr("href");
-             console.log(ilink);
-             getdetails(ilink);
+            let ilink = 'https://github.com'+selectorTool(issueLink[j]).attr("href");
+            // console.log(ilink);
+            let filename = (selectorTool(issueLink[j]).attr("href")).split("/")[1];
+            createfile(directory,topic,filename, ilink);
         }
     }
     console.log('------------------------------------------------------------------------------------------------------'); 
+}
+
+function createDir(dirname, topic){
+    let path = p.join(dirname, topic)
+    if(!fs.existsSync(path)) fs.mkdirSync(path);
+}
+
+
+function createfile(dir,topic,file ,link){
+    let path = p.join(dir, topic,file + ".json")
+    if(!fs.existsSync(path)){
+        getdetails(link, path);
+       
+    } 
 }
 
 function getdetails(url){
@@ -57,15 +77,23 @@ function getdetails(url){
         else getidetails(html)
     });
 
-    function getidetails(html){
-        let tool = c.load(html);
-        let content = tool(".flex-auto.min-width-0.p-2.pr-3.pr-md-2 .markdown-title");
-        let link = "https://github.com" + content.attr("href");
-        console.log("link :---->" + link);
-        
-        // for(let i = 0; i < content.length; i++){
-            let text = tool(content[0]).text();
-            console.log("text :----> " + text);
-        // }
-    }
 }
+
+let arr = [];
+function getidetails(html){
+    let tool = c.load(html);
+    let content = tool(".flex-auto.min-width-0.p-2.pr-3.pr-md-2 .markdown-title");
+    let link = "https://github.com" + content.attr("href");
+    
+    let text = tool(content[0]).text();
+
+    let obj = new Object();
+    obj.link = link;
+    obj.text = text;
+    // console.log(obj);
+    // return obj
+
+    arr.push(obj)
+    // console.table(arr); 
+}
+
