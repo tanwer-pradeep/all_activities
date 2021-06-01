@@ -4,7 +4,7 @@ let req = require("request");
 let c = require("cheerio");
 let p = require("path");
 let fs = require("fs");
-
+let arr = [];
 
 let url = "https://github.com/topics";
 req(url, function(err, res, html){
@@ -20,6 +20,7 @@ function extractTopics(html){
         let name = selectorTool(topicname[i]).attr("href");
         let newlink = ("https://github.com" + name);
         extractRepo(newlink);
+        console.log("hello");
     }
 
 }
@@ -43,14 +44,21 @@ function getissues(html){
     let topic = (topicname.text()).trim();
     console.log(topic);
     createDir(directory,topic);
+
+
     for(let i = 0; i < 8; i++){
         let issueLink = selectorTool(issueList[i]).find(".tabnav-tabs a")
-        for(let j = 0; j < issueLink.length; j++)
-        if(j % 3 == 1){
-            let ilink = 'https://github.com'+selectorTool(issueLink[j]).attr("href");
-            // console.log(ilink);
-            let filename = (selectorTool(issueLink[j]).attr("href")).split("/")[1];
-            createfile(directory,topic,filename, ilink);
+        
+        
+        for(let j = 0; j < issueLink.length; j++){
+            if(j % 3 == 1){
+                let ilink = 'https://github.com'+selectorTool(issueLink[j]).attr("href");
+                // console.log(ilink);
+                let filename = (selectorTool(issueLink[j]).attr("href")).split("/")[1];
+                createfile(directory,topic,filename, ilink);
+            
+            }
+            
         }
     }
     console.log('------------------------------------------------------------------------------------------------------'); 
@@ -66,7 +74,12 @@ function createfile(dir,topic,file ,link){
     let path = p.join(dir, topic,file + ".json")
     if(!fs.existsSync(path)){
         getdetails(link, path);
+        
        
+        // fs.writeFileSync(path,JSON.stringify(arr),function(err){
+        //     if(err) console.log(err);
+        //     console.log("Done");
+        // })
     } 
 }
 
@@ -79,7 +92,7 @@ function getdetails(url){
 
 }
 
-let arr = [];
+
 function getidetails(html){
     let tool = c.load(html);
     let content = tool(".flex-auto.min-width-0.p-2.pr-3.pr-md-2 .markdown-title");
@@ -87,13 +100,16 @@ function getidetails(html){
     
     let text = tool(content[0]).text();
 
-    let obj = new Object();
-    obj.link = link;
-    obj.text = text;
+    // let obj = new Object();
+    // obj.link = link;
+    // obj.text = text;
     // console.log(obj);
     // return obj
 
-    arr.push(obj)
-    // console.table(arr); 
+    arr.push({
+        Link : link,
+        name : text
+    })
+    console.table(arr); 
 }
 
