@@ -1,1 +1,3 @@
+My first basic activity to understand how "Date" works in javascript. 
 
+See the snapshots of this activity attached below.......
