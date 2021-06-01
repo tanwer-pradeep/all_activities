@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Cloak with Date</title>
+    <link rel="stylesheet" href="try.css">
+</head>
+<body onload="intialclock()">
+    <div class="date-time">
+        <div class="date">
+            <span id = "dayname">day</span>,
+            <span id="month">month</span>,
+            <span id="daynum">00</span>,
+            <span id="year">year</span>
+        </div>
+
+        <div class="time">
+            <sapn id="hours">hours</sapn>:
+            <sapn id="minutes">minutes</sapn>:
+            <sapn id="seconds">seconds</sapn>
+        </div>
+    </div>
+    <script type="text/javascript">
+    function updateclock(){
+        let date = new Date();
+        let dayname = date.getDay(), month = date.getMonth(), 
+        daynum = date.getDate(), year = date.getFullYear(), hours = date.getHours(),
+        minutes = date.getMinutes(), seconds = date.getSeconds()
+
+        if(hours < 10) hours = "0" + hours;
+        if(minutes < 10) minutes = "0"+minutes;
+        if(seconds < 10) seconds = "0" + seconds;
+        if(daynum < 10) daynum = "0" + daynum;
+
+
+        let daysarr = ["Sunday","Monday","Tuesday", "WednesDay","Thrusday","Friday","Satarday"];
+        dayname = daysarr[dayname];
+        let MonthsArr = ["January", "February", "March","April","May","June","July","August","September", "October", "November","December"];
+        month = MonthsArr[month];
+        let val =[dayname, month, daynum, year, hours, minutes,seconds]
+        let ids = ["dayname", "month", "daynum", "year", "hours", "minutes", "seconds"];
+
+        
+        for(let i = 0; i < ids.length; i++){
+            document.getElementById(ids[i]).innerHTML = val[i];
+        }
+
+    }
+
+    function intialclock(){
+        updateclock();
+        window.setInterval("updateclock()", 1);
+    }
+    </script>
+</body>
+</html>
