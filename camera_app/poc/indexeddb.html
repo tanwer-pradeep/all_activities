@@ -10,6 +10,7 @@
     DB<input type="text" value="MainDB" id = 'txtDB'>
     Version<input type = 'text' value="1" id = 'textversion'>
     <button id ='btnCreateDB'>CreateDB</button>
+    <button id ='addbutton'>AddNotes</button>
 </body>
 
 <script>
@@ -17,13 +18,52 @@
     btnCreateDB.addEventListener("click", function(){
         CreateBD();
     });
-
+function CreateBD(){
     let dbname = document.getElementById("txtDB").value;
     let dbversion = document.getElementById("textversion").value;
     let req = indexedDB.open(dbname, dbversion);
     req.onupgradeneeded = function(e){
         alert("upgrade was called");
+        db =req.result;
+        db.createObjectStore('notes', {keyPath: 'nId'});
     }
+    req.onsuccess = function(e){
+        alert("sucess was called");
+        db = req.result;
+        viewnotes();
+    }
+    req.onerror = function(e){
+        alert('error was called' + " " + e.target.error);
+    }
+}
+    addbutton.addEventListener('click', function(){
+        addNote();
+    });
+
+    function addNote(){
+        let note ={
+            nId : "pradeep", 
+            txt : "first note"
+        }
+        let tx = db.transaction('notes', 'readwrite');
+        let notesStore = tx.objectStore('notes');
+        notesStore.add(note);
+    }
+
+    function viewnotes(){
+        let tx = db.transaction('notes', 'readonly');
+        let notes = tx.objectStore('notes');
+        let request = notes.openCursor();
+        request.onsuccess = function(e){
+            let cursor = request.request;
+            if(cursor){
+                console.log('cursor');
+                console.log(cursor.value);
+                cursor.continue();
+            }
+        }
+    }
+
 
 </script>
 </html>
