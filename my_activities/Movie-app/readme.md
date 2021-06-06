@@ -1,9 +1,11 @@
-<!-- https://github.com/tanwer-pradeep/all_activities/tree/master/my_activities/Movie-app 
+### Welcom to Pradeep's Movie app
 
-api-key :--- d6bed68fef0d22e8c3aba9bc0166c870
-url :-- https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>
+- this project is created for pep hackathon 
+- used stack :- **html** **css** **javascript**
+- learning :- **DOM Manipulation**, **callback functions**, **async function**, **fetch**
+
+[Link to Linkedin](https://www.linkedin.com/posts/pradeep-singh-20aa37210_hackathon-pepcoding-activity-6807354309127274496-bi1F)
+
+here are some snapshotes of app 
 
 
-
-
--->
