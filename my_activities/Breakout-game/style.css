@@ -17,7 +17,7 @@ h1{
 }
 
 canvas{
-    background-color: aquamarine;
+    background-color: rgb(253, 255, 253);
     display: block;
     border-radius: 5px;
 }
