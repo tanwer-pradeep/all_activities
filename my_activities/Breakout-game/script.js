@@ -26,7 +26,7 @@ const Ball={
     y: canvas.height / 2,
     x: canvas.width / 2,
     radius: 10,
-    speed: 8,
+    speed: 5,
     dx: 4,
     dy: -4
 
@@ -99,7 +99,6 @@ for(let i = 0; i < rows; i++){
     }
 }
 
-// console.log(bricks);
 function drawBricks(){
     bricks.forEach(col =>{
         col.forEach(brick =>{
@@ -119,7 +118,6 @@ function drawBricks(){
 
 function movePaddle(){
     Paddle.x += Paddle.dx;
-    // console.log(Paddle.x);
 
     // wall conditions
     if(Paddle.x < 0){
@@ -131,9 +129,8 @@ function movePaddle(){
 }
 
 
-
+// handling right and left movements
 function keyDown(e){
-    // console.log(e.key);
     if(e.key === 'ArrowRight' || e.key === 'Right'){
         Paddle.dx = Paddle.speed;
         console.log(1);
@@ -145,7 +142,6 @@ function keyDown(e){
 }
 
 function keyUp(e){
-    // console.log(e.key);
     if(e.key === 'Left' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Right'){
         Paddle.dx = 0;
     }
@@ -159,13 +155,36 @@ function keyUp(e){
 function update(){
     draw();
     movePaddle();
+    moveBall();
     requestAnimationFrame(update);
 }
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//--------------------------------------- moving ball functionality------
 
+function moveBall(){
+    Ball.x += Ball.dx;
+    Ball.y += Ball.dy;
+
+// wall conditions
+    if(Ball.x - Ball.radius< 0 || Ball.x + Ball.radius > canvas.width){
+        Ball.dx *= -1;
+    }
+    if(Ball.y - Ball.radius < 0 || Ball.y + Ball.radius > canvas.height){
+        Ball.dy *= -1;
+    }
+
+    // paddle collision
+    if(Ball.x - Ball.radius > Paddle.x && Ball.x + Ball.radius < Paddle.x + Paddle.w
+        && Ball.y+Ball.radius > Paddle.y){
+            Ball.dy = -Ball.speed;
+        }
+}
+
+
+//---------------------------------
 
 // main draw function
 function draw(){
