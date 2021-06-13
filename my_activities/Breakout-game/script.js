@@ -17,6 +17,8 @@ closebtn.addEventListener('click',()=>{
 const canvas = document.getElementById('game-area');
 const gamearea = canvas.getContext('2d');
 
+
+
 //---------------------------------------------------------- creating ball using 'path'---------------------------------------------------------------------------------
 
 // get ball properties
@@ -24,6 +26,9 @@ const Ball={
     y: canvas.height / 2,
     x: canvas.width / 2,
     radius: 10,
+    speed: 8,
+    dx: 4,
+    dy: -4
 
 }
 
@@ -44,7 +49,9 @@ const Paddle ={
     x: canvas.width / 2 - 40,
     y: canvas.height - 20,
     w: 80,
-    h: 10
+    h: 10,
+    dx: 0,
+    speed:8
 }
 
 // function to draw paddle
@@ -92,7 +99,7 @@ for(let i = 0; i < rows; i++){
     }
 }
 
-console.log(bricks);
+// console.log(bricks);
 function drawBricks(){
     bricks.forEach(col =>{
         col.forEach(brick =>{
@@ -110,6 +117,43 @@ function drawBricks(){
 
 //------------------------------------------------------------------ moving paddle -------------------------------------------------------------------------------------
 
+function movePaddle(){
+    Paddle.x += Paddle.dx;
+
+    // wall conditions
+    if(Paddle.x + Paddle.w < 0){
+        Paddle.x = 0;
+    }
+    else if(Paddle.x + Paddle.w > canvas.width){
+        Paddle.x = canvas.width - Paddle.w;
+    }
+}
+
+
+
+function keyDown(e){
+    console.log(e.key);
+    if(e.key === 'ArrowRight' || e.key === 'Right'){
+        // console.log("right")
+        Paddle.dx = Paddle.speed;
+        console.log(Paddle.speed);
+        console.log(Paddle.x);
+    }
+}
+
+function keyUp(e){
+    // console.log(e.key);
+
+}
+
+
+
+// creating update function which will draw everything again and again
+
+function update(){
+    draw();
+    movePaddle();
+}
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -124,5 +168,9 @@ function draw(){
     drawBricks();
 }
 
-draw();
+update();
+
+// keybord events for paddle
+document.addEventListener('keydown', keyDown);
+document.addEventListener('keyup', keyUp);
 
