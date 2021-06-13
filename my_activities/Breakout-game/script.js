@@ -45,7 +45,7 @@ function drawBall(){
 // ----------------------------------------------------------- creating paddle -----------------------------------------------------------------------------------------
 
 // get paddle properties
-const Paddle ={
+let Paddle ={
     x: canvas.width / 2 - 40,
     y: canvas.height - 20,
     w: 80,
@@ -89,7 +89,7 @@ let brickprop = {
 }
 
 // funtion to create brick layout
-const bricks = [];
+let bricks = [];
 for(let i = 0; i < rows; i++){
     bricks[i] =[];
     for(let j = 0; j < clms; j++){
@@ -119,9 +119,10 @@ function drawBricks(){
 
 function movePaddle(){
     Paddle.x += Paddle.dx;
+    // console.log(Paddle.x);
 
     // wall conditions
-    if(Paddle.x + Paddle.w < 0){
+    if(Paddle.x < 0){
         Paddle.x = 0;
     }
     else if(Paddle.x + Paddle.w > canvas.width){
@@ -132,17 +133,22 @@ function movePaddle(){
 
 
 function keyDown(e){
-    console.log(e.key);
+    // console.log(e.key);
     if(e.key === 'ArrowRight' || e.key === 'Right'){
-        // console.log("right")
         Paddle.dx = Paddle.speed;
-        console.log(Paddle.speed);
-        console.log(Paddle.x);
+        console.log(1);
+    }
+    else if(e.key === 'Left' || e.key === 'ArrowLeft'){
+        Paddle.dx = -Paddle.speed;
+        console.log(2);
     }
 }
 
 function keyUp(e){
     // console.log(e.key);
+    if(e.key === 'Left' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Right'){
+        Paddle.dx = 0;
+    }
 
 }
 
@@ -153,6 +159,7 @@ function keyUp(e){
 function update(){
     draw();
     movePaddle();
+    requestAnimationFrame(update);
 }
 
 
@@ -162,15 +169,15 @@ function update(){
 
 // main draw function
 function draw(){
+    gamearea.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
     drawPaddle();
     drawscore();
     drawBricks();
 }
 
-update();
-
 // keybord events for paddle
 document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
 
+update();
