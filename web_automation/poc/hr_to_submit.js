@@ -1,6 +1,10 @@
 //old code from hr_login.js
 let pup = require("puppeteer");
-let browserlaunch = pup.launch({headless:false, defaultViewport:null});
+let browserlaunch = pup.launch({
+    headless:false, 
+    args: ['--start-maximized'],
+    defaultViewport:null
+});
 let wtab;
 
 
@@ -41,9 +45,11 @@ browserlaunch.then(function(browser){
     let tosolve = wtab.click("#base-card-6-link");
     let inqus = Promise.all([tosolve, wtab.waitForNavigation({waituntill:"networkidle0"})]);
     return inqus;
+}).then(function(){
+    return wtab.waitForSelector("a[data-attr1='ctci-making-anagrams']",{visible:true})
 })
 .then(function(){
-    wtab.click("a.js-track-click.challenge-list-item");
+    wtab.click("a[data-attr1='ctci-making-anagrams']");
 })
 // this code gives error as we just waited for click event and not for navigation 
 // so we need to apply promise.all , which takes an array of promises so we can pass the above click promise as well as navigation promise in it

@@ -104,7 +104,7 @@ function drawBricks(){
         col.forEach(brick =>{
             gamearea.beginPath();
             gamearea.rect(brick.x, brick.y, brick.w, brick.h);
-            gamearea.fillStyle = brickprop.visibility ? '#0095dd':'white'
+            gamearea.fillStyle = brick.visibility ? '#0095dd':'transparent'
             gamearea.fill();
             gamearea.closePath();
         })
@@ -148,8 +148,6 @@ function keyUp(e){
 
 }
 
-
-
 // creating update function which will draw everything again and again
 
 function update(){
@@ -181,6 +179,21 @@ function moveBall(){
         && Ball.y+Ball.radius > Paddle.y){
             Ball.dy = -Ball.speed;
         }
+
+// brick collision
+        bricks.forEach(row =>{
+            row.forEach(brick =>{
+                if(brick.visibility){
+                    if(Ball.x -Ball.radius > brick.x && 
+                        Ball.x + Ball.radius < brick.x + brick.w &&
+                        Ball.y - Ball.radius < brick.y + brick.h &&
+                        Ball.y + Ball.radius > brick.y){
+                            Ball.dy *= -1;
+                            brick.visibility = false;
+                    }
+                }
+            })
+        })
 }
 
 
