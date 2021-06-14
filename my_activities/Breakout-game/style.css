@@ -3,7 +3,7 @@
 }
 
 body{
-    background-color: #0095dd;
+    background-color: #3e6082;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +17,7 @@ h1{
 }
 
 canvas{
-    background-color: rgb(253, 255, 253);
+    background-color: rgb(5, 5, 5);
     display: block;
     border-radius: 5px;
 }

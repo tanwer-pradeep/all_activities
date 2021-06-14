@@ -36,7 +36,7 @@ const Ball={
 function drawBall(){
     gamearea.beginPath();
     gamearea.arc(Ball.x, Ball.y, Ball.radius, 0, Math.PI * 2);
-    gamearea.fillStyle = '#0095dd';
+    gamearea.fillStyle = '#fc2c03';
     gamearea.fill();
     gamearea.closePath();
 }
@@ -58,7 +58,7 @@ let Paddle ={
 function drawPaddle(){
     gamearea.beginPath();
     gamearea.rect(Paddle.x, Paddle.y, Paddle.w, Paddle.h);
-    gamearea.fillStyle = '#0095dd';
+    gamearea.fillStyle = '#e7fc03';
     gamearea.fill();
     gamearea.closePath();
 }
@@ -66,10 +66,12 @@ function drawPaddle(){
 
 //--------------------------------------------------------------- creating score ---------------------------------------------------------------------------------------
 let score = 0;
+let stage = 0;
 
 function drawscore(){
     gamearea.font = '20px Aerial'
     gamearea.fillText(`Score : ${score}`, canvas.width - 100, 30);
+    gamearea.fillText(`Stage : ${stage}`, 10, 30);
 }
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -104,7 +106,7 @@ function drawBricks(){
         col.forEach(brick =>{
             gamearea.beginPath();
             gamearea.rect(brick.x, brick.y, brick.w, brick.h);
-            gamearea.fillStyle = brick.visibility ? '#0095dd':'transparent'
+            gamearea.fillStyle = brick.visibility ? '#e7fc03':'transparent'
             gamearea.fill();
             gamearea.closePath();
         })
@@ -133,11 +135,11 @@ function movePaddle(){
 function keyDown(e){
     if(e.key === 'ArrowRight' || e.key === 'Right'){
         Paddle.dx = Paddle.speed;
-        console.log(1);
+        // console.log(1);
     }
     else if(e.key === 'Left' || e.key === 'ArrowLeft'){
         Paddle.dx = -Paddle.speed;
-        console.log(2);
+        // console.log(2);
     }
 }
 
@@ -187,15 +189,43 @@ function moveBall(){
                     if(Ball.x -Ball.radius > brick.x && 
                         Ball.x + Ball.radius < brick.x + brick.w &&
                         Ball.y - Ball.radius < brick.y + brick.h &&
-                        Ball.y + Ball.radius > brick.y){
-                            Ball.dy *= -1;
-                            brick.visibility = false;
+                        Ball.y + Ball.radius > brick.y)
+                    {
+                        Ball.dy *= -1;
+                        brick.visibility = false;
+                        increasescore();
                     }
                 }
             })
         })
+
+        // missing paddle
+        if(Ball.y + Ball.radius > canvas.height){
+            score = 0;
+            stage = 0;
+            showallbricks();
+        }
 }
 
+// showing bricks again
+function showallbricks(){
+    bricks.forEach(row =>{
+        row.forEach(brick =>{
+            brick.visibility = true;
+        })
+    })
+}
+//------------------------------------------- score handeler -------------
+function increasescore(){
+    score++;
+    // if(score == rows * clms) stage = 1;
+
+    if(score % (rows * clms) == 0){
+        stage++;
+        showallbricks()
+    }
+
+}
 
 //---------------------------------
 
