@@ -177,7 +177,7 @@ function moveBall(){
     }
 
     // paddle collision
-    if(Ball.x - Ball.radius > Paddle.x && Ball.x + Ball.radius < Paddle.x + Paddle.w
+    if(Ball.x > Paddle.x && Ball.x  < Paddle.x + Paddle.w
         && Ball.y+Ball.radius > Paddle.y){
             Ball.dy = -Ball.speed;
         }
@@ -186,8 +186,8 @@ function moveBall(){
         bricks.forEach(row =>{
             row.forEach(brick =>{
                 if(brick.visibility){
-                    if(Ball.x -Ball.radius > brick.x && 
-                        Ball.x + Ball.radius < brick.x + brick.w &&
+                    if(Ball.x > brick.x && 
+                        Ball.x < brick.x + brick.w &&
                         Ball.y - Ball.radius < brick.y + brick.h &&
                         Ball.y + Ball.radius > brick.y)
                     {
