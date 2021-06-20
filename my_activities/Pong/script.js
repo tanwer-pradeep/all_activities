@@ -4,11 +4,7 @@ const rules = document.querySelector("#rules");
 const closebtn = document.querySelector('#close-btn');
 let startbtn = document.querySelector('.Start');
 let start = false;
-startbtn.addEventListener("click",function(){
-    startbtn.classList.add('hidden');
-    start = true
-    return;
-})
+
 showrule.addEventListener("click",function(){
     rules.classList.add('show');
     return;
@@ -208,9 +204,14 @@ function update(){
     if(start == true) moveball();
     rendercanvas();
     movepaddle();
+    startbtn.addEventListener("click",function(){
+        startbtn.classList.add('hidden');
+        start = true
+        return;
+    })
     if(leftscore == 5 || rightscore == 5){
         start = false;
-        // startbtn.innerHTML = 'Play Again'
+        startbtn.innerHTML = 'Play Again'
         startbtn.classList.remove('hidden');
     }
     requestAnimationFrame(update);
