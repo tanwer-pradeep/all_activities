@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 body{
     background-color: #3e6082;
@@ -17,13 +18,44 @@ body{
     border-radius: 5px;
 }
 
-
-/* .show-rules{
-    
-    position: absolute;
-    background-color: black;
-    color: white;
+h1{
+    font-size: 3rem;
+    color: aliceblue;
 }
+
+.btn{
+    cursor: pointer;
+    border: 0;
+    padding: 10px 20px;
+    background: black;
+    color: white;
+    border-radius: 7px;
+}
+.btn:focus{
+    outline: 0;
+}
+.btn:hover{
+    background: #222;
+}
+.btn:active{
+    transform: scale(0.98);
+}
+
+.rules-btn{
+    position: absolute;
+    top: 30px;
+    left: 20px;
+}
+.Start{
+    position: absolute;
+    top: 50;
+    left: 20;
+}
+
+.Start.hidden{
+    display: none
+}
+
 .rules{
     position: absolute;
     top: 0;
@@ -41,5 +73,4 @@ body{
 
 .rules.show{
     transform: translateX(0px);
-} 
-*/
+}
