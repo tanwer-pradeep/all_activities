@@ -12,15 +12,15 @@ body{
     margin: 0;
 }
 
-.ga{
-    background-color: rgb(5, 5, 5);
+.gamearea{
     display: block;
     border-radius: 5px;
 }
 
-.show-rules{
+
+/* .show-rules{
     
-    /* position: absolute; */
+    position: absolute;
     background-color: black;
     color: white;
 }
@@ -41,4 +41,5 @@ body{
 
 .rules.show{
     transform: translateX(0px);
-}
+} 
+*/

@@ -12,20 +12,27 @@ cprop = {
 paddle = {
     height: 50,
     width: 10,
-    colour: 'white'
+    colour: 'white',
+    dy:0,
+    speed: 8
+
 }
 
 // ball property
 ballprop={
     ballx: cprop.wt/2,
     bally: cprop.ht/ 2,
-    ballr: 8
+    ballr: 8,
+    dx: 4,
+    dy:5,
+    speed: 8
+
 }
 
 
 function rendercanvas() {
     //canvas colour filling
-    context.fillStyle = 'black'
+    context.fillStyle = '#067d5b'
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     // paddle creation
@@ -62,8 +69,28 @@ function rendercanvas() {
 function createcanvas() {
     canvas.width = cprop.wt;
     canvas.height = cprop.ht;
-    document.querySelector('body').appendChild(canvas);
+    document.querySelector('.gamearea').appendChild(canvas);
 }
 
-createcanvas();
-rendercanvas();
+function moveball(){
+    ballprop.ballx += ballprop.dx;
+    ballprop.bally += ballprop.dy;
+    // ceil and floor collision detection
+    if(ballprop.bally - ballprop.ballr < 0 || ballprop.bally + ballprop.ballr > canvas.height){
+        ballprop.dy *= -1;
+    }
+    if(ballprop.ballx - ballprop.ballr < 0 || ballprop.ballx + ballprop.ballr > canvas.width){
+        ballprop.dx *= -1
+        // update();
+    }
+}
+function update(){
+    context.clearRect(0,0,canvas.width, canvas.height);
+    createcanvas();
+    rendercanvas();
+    moveball();
+    requestAnimationFrame(update);
+
+}
+
+update();
