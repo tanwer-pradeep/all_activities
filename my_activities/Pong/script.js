@@ -10,6 +10,8 @@ showrule.addEventListener("click",function(){
     return;
 })
 
+
+
 closebtn.addEventListener('click',()=>{
     rules.classList.remove('show');
 })
@@ -209,10 +211,11 @@ function update(){
         start = true
         return;
     })
-    if(leftscore == 5 || rightscore == 5){
+    
+    if(leftscore == 3 || rightscore == 3){
         start = false;
-        startbtn.innerHTML = 'Play Again'
-        startbtn.classList.remove('hidden');
+        // startbtn.classList.remove('hidden');
+        location.reload();
     }
     requestAnimationFrame(update);
 
