@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    height: 100vh;
+    background: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.main{
+    padding: 1rem;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: blanchedalmond;
+    border: 1px solid black;
+}
+input{
+    height: 1.5rem;
+    width: 15rem;
+    margin-bottom: 1.5rem;
+}
+textarea{
+    resize: none;
+}

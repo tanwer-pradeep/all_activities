@@ -1,43 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Registration Form</title>
 </head>
+
 <body>
     <div class="main">
         <form action="" method="POST" autocomplete="off">
+            <!----------------------------------------- First Name -------------------------------------------->
             <label for="firstname">First Name</label><br>
-            <input type="text" id = "firstname"><br>
+            <input type="text" id="firstname" required name="Firstname"><br>
 
+            <!------------------------------------------- Last Name ------------------------------------------->
             <label for="lastname">Last Name</label><br>
-            <input type="text" id = "lastname"><br>
+            <input type="text" id="lastname" name="Lastname"><br>
+
+            <!--------------------------------------------- Email --------------------------------------------->
             <label for="email">Email</label><br>
-            <input type="email" id = "email"><br>
-            <label for="username">LinkedIn profile link</label><br>
-            <input type="url"><br>
-            <label for="username">Drupal.org Profile link</label><br>
-            <input type="url"><br>
-            <label for="username">Position Applying for</label><br>
-            <input type="text"><br>
-            <label for="username">When can you start?</label><br>
-            <input type="text"><br>
-            <label for="username">Mobile Number</label><br>
-            <input type="text"><br>
-            <label for="username">Current City</label><br>
-            <input type="text"><br>
-            <label for="username">Last company you worked for</label><br>
-            <input type="text"><br>
-            <label for="username">Comments</label><br>
-            <input type="text"><br>
+            <input type="email" id="email" required name="Email"><br>
+
+            <!-------------------------------------------- LinkedIn -------------------------------------------->
+            <label for="LinkedIn">LinkedIn profile link</label><br>
+            <input type="url" id="LinkedIn" name="LinkedIn"><br>
+
+            <!--------------------------------------------- Drupal --------------------------------------------->
+            <label for="Drupal">Drupal.org Profile link</label><br>
+            <input type="url" id="Drupal" name="Drupal"><br>
+
+            <!---------------------------------------------- Position ------------------------------------------>
+            <label for="position">Position Applying for</label><br>
+            <input type="text" id="position" required name="Position"><br>
+
+            <!---------------------------------------------- Joining ------------------------------------->
+            <label for="duration">When can you start?(In days)</label><br>
+            <input type="number" id="duration" name="Duration" ><br>
+
+            <!---------------------------------------------- Mobile number -------------------------------------->
+            <label for="mobile-nuber">Mobile Number</label><br>
+            <input type="tel" id="mobile-nuber" required name="Mobile"><br>
+
+            <!----------------------------------------------- Current city ------------------------------------->
+
+            <label for="current-city" value="">Current City</label><br>
+            <select name="current-city" id="current-city" name="Current-city">
+                <option value="Delhi">Delhi</option>
+                <option value="Others">others</option>
+            </select>
+            <br>
+            <!-------------------------------------------  if current city != Delhi ------------------------------->
+            <div id="relocation" hidden>
+                <br>
+                <label for="relocation">Are you willing to relocate?</label><br>
+                <input type="text" id="other-city" required name="Other-city">
+                <select name="relocation" id="relocation">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+            </div>
+            <br>
+
+            <!---------------------------------------------- Last company ------------------------------------------->
+            <label for="previous-company">Last company you worked for</label><br>
+            <input type="text" id="previous-company" name="previous-company"><br>
+
+            <!---------------------------------------------- comments ------------------------------------------------>
+            <label for="comments">Comments</label><br>
+            <textarea name="comments" id="commets" cols="30" rows="10" name="Comments"></textarea>
+            <br>
+
+            <!---------------------------------------------- Submit -------------------------------------------------->
             <button type="submit">Submit</button>
 
 
         </form>
 
     </div>
-    
+
+    <script src="./script.js"></script>
+
 </body>
+
 </html>
