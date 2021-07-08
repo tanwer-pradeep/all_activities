@@ -70,6 +70,16 @@ a:active{
     margin-right: 5px;
 }
 
+.fa-times-circle{
+    float: right;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.name{
+    margin-top: 20px;
+    margin-right: 20px;
+}
 
 
 @media screen and (max-width: 600px){
