@@ -4,10 +4,21 @@ const closemodal = document.getElementById('close-modal');
 const website_name = document.getElementById('website-name');
 const website_url = document.getElementById('website-url');
 const bookmarkform = document.getElementById('bookmark-form');
-const bookmar_container = document.getElementById('bookmark-container');
+const bookmark_container = document.getElementById('bookmark-container');
 
 
+bookmark_array = [];
 
+function fetchbookmarks(){
+    if(bookmark_array.length !== 0){
+        console.table(bookmark_array);
+    }else{
+        bookmark_array.push({
+            websitename : "google",
+            websiteurl : "https://google.com"
+        })
+    }
+}
 
 addmodal.addEventListener('click', () =>{
     modal.classList.add('show');
@@ -26,8 +37,6 @@ document.addEventListener('click', (e) =>{
 })
 
 function validateform(name, url){
-    
-
     // regex for url
     var expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
     var regex = new RegExp(expression);
@@ -50,13 +59,17 @@ bookmarkform.addEventListener('submit', (e) =>{
     if(!url.includes('http://', 'https://')){
         url = `https://${url}`;
     }
-
-    
     if(!validateform(name, url)){
         return false; 
     }    
 
     console.log(`name:- ${name}, url:- ${url}`);
+    nele = {
+        websitename : name,
+        websiteurl : url
+    }
+    bookmark_array.push(nele)
+    fetchbookmarks();
 // main div containing  the bookmark
     const item = document.createElement('div');
     item.setAttribute('class', 'item');
@@ -90,12 +103,12 @@ bookmarkform.addEventListener('submit', (e) =>{
 
 
     //finally appending element to bookmark-container
-    bookmar_container.appendChild(item);
+    bookmark_container.appendChild(item);
 
-    
-
-    
+    bookmarkform.reset();
     
 })
 
 
+fetchbookmarks();
+console.table(bookmark_array);
