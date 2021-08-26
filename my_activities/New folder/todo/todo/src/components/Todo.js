@@ -11,8 +11,8 @@ export default class Todo extends Component {
             ],
             currTask: ''
         }
-
     }
+    
     handleInput =(e)=>{
         let cval = e.target.value;
         this.setState({currTask: cval})
@@ -30,7 +30,6 @@ export default class Todo extends Component {
         const nta = this.state.tasks.filter(obj =>{
             return obj.id !== id
         })
-
         this.setState({
             tasks : nta
         })
@@ -38,24 +37,45 @@ export default class Todo extends Component {
     render() {
         return (
             <>
-            <div className="main">
-                <input onChange={this.handleInput} value={this.state.currTask} placeholder='Enter your task' type="text" />
-                <button onClick={this.addingTask}>Add</button>
+                <Input currTask= {this.state.currTask} handleInput={this.handleInput} addingTask={this.addingTask}/>
+                <Tasklist tasks = {this.state.tasks} onDelete={this.onDelete}/>
+            </>
+        )
+    }
+}
 
+class Input extends Component {
+    constructor(props){
+        super(props)
+    }
+    render() {
+        return (
+            <div className="main">
+                <input onChange={this.props.handleInput} value={this.props.currTask} type="text" />
+                <button onClick={this.props.addingTask}>Add</button>
             </div>
+        )
+    }
+}
+
+class Tasklist extends Component {
+    constructor(props){
+        super(props);
+    }
+    render() {
+        return (
             <div className="tasks">
                 <ul>
                     {
-                        this.state.tasks.map(task=>(
+                        this.props.tasks.map(task=>(
                             <li key={task.id}>
                                 <h2>{task.task}</h2>
-                                <button onClick={()=>this.onDelete(task.id)}>Delete</button>
+                                <button onClick={()=>this.props.onDelete(task.id)}>Delete</button>
                             </li>
                         ))
                     }
                 </ul>
             </div>
-            </>
         )
     }
 }
